@@ -1,5 +1,6 @@
 package ai.waypoint.backend.overpass;
 
+import ai.waypoint.backend.geo.Bbox;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,15 +22,6 @@ public final class GeoFence {
                     + NUMBER + "\\s*,\\s*" + NUMBER + "\\s*\\)");
 
     private GeoFence() {
-    }
-
-    /** Inclusive latitude/longitude bounds in degrees. */
-    public record Bbox(double south, double west, double north, double east) {
-
-        /** Whether a point is on or inside these bounds. */
-        public boolean contains(double lat, double lon) {
-            return lat >= south && lat <= north && lon >= west && lon <= east;
-        }
     }
 
     /**

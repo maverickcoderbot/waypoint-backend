@@ -1,11 +1,13 @@
 package ai.waypoint.backend.overpass;
 
 import ai.waypoint.backend.cache.CacheService;
+import ai.waypoint.backend.ratelimit.RateLimiter;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,7 +22,7 @@ public class OverpassService {
     private final OverpassClient client;
     private final OverpassProperties properties;
 
-    public OverpassService(CacheService cacheService, RateLimiter rateLimiter,
+    public OverpassService(CacheService cacheService, @Qualifier("overpassRateLimiter") RateLimiter rateLimiter,
             OverpassClient client, OverpassProperties properties) {
         this.cacheService = cacheService;
         this.rateLimiter = rateLimiter;
