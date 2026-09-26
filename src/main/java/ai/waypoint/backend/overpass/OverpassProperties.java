@@ -1,5 +1,6 @@
 package ai.waypoint.backend.overpass;
 
+import ai.waypoint.backend.geo.Bbox;
 import java.net.URI;
 import java.time.Duration;
 import java.util.List;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "waypoint.overpass")
 public class OverpassProperties {
 
-    private GeoFence.Bbox bbox = new GeoFence.Bbox(38.35, -90.9, 39.05, -89.95);
+    private Bbox bbox = new Bbox(38.35, -90.9, 39.05, -89.95);
     private Duration ttl = Duration.ofHours(24);
     private int rateMax = 30;
     private Duration rateWindow = Duration.ofSeconds(60);
@@ -28,11 +29,11 @@ public class OverpassProperties {
     private String userAgent = "Waypoint/1.0 (Overpass caching proxy)";
     private Duration upstreamTimeout = Duration.ofSeconds(30);
 
-    public GeoFence.Bbox getBbox() {
+    public Bbox getBbox() {
         return bbox;
     }
 
-    public void setBbox(GeoFence.Bbox bbox) {
+    public void setBbox(Bbox bbox) {
         this.bbox = bbox;
     }
 

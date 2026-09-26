@@ -9,6 +9,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import ai.waypoint.backend.cache.CacheService;
+import ai.waypoint.backend.geo.Bbox;
+import ai.waypoint.backend.ratelimit.RateLimitException;
+import ai.waypoint.backend.ratelimit.RateLimiter;
 import java.time.Duration;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -31,7 +34,7 @@ class OverpassServiceTest {
     @InjectMocks private OverpassService service;
 
     private void allowRegion() {
-        when(properties.getBbox()).thenReturn(new GeoFence.Bbox(38.35, -90.9, 39.05, -89.95));
+        when(properties.getBbox()).thenReturn(new Bbox(38.35, -90.9, 39.05, -89.95));
     }
 
     @Test

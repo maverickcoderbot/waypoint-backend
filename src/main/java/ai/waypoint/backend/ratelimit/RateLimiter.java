@@ -1,12 +1,10 @@
-package ai.waypoint.backend.overpass;
+package ai.waypoint.backend.ratelimit;
 
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Thread-safe fixed-window limiter with per-instance, in-memory state.
@@ -15,18 +13,12 @@ import org.springframework.stereotype.Component;
  * it. Instances do not share quotas; a multi-instance deployment needs a shared
  * limiter. A clock seam lets tests advance time without sleeping.
  */
-@Component
 public class RateLimiter {
 
     private final ConcurrentHashMap<String, Window> windows = new ConcurrentHashMap<>();
     private final int max;
     private final Duration window;
     private final Clock clock;
-
-    @Autowired
-    public RateLimiter(OverpassProperties properties) {
-        this(properties.getRateMax(), properties.getRateWindow(), Clock.systemUTC());
-    }
 
     public RateLimiter(int max, Duration window, Clock clock) {
         if (max < 1 || window.isZero() || window.isNegative()) {

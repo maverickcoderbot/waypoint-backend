@@ -1,4 +1,4 @@
-package ai.waypoint.backend.overpass;
+package ai.waypoint.backend.ratelimit;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

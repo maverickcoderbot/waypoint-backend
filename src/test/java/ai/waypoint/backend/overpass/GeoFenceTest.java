@@ -2,11 +2,12 @@ package ai.waypoint.backend.overpass;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import ai.waypoint.backend.geo.Bbox;
 import org.junit.jupiter.api.Test;
 
 class GeoFenceTest {
 
-    private final GeoFence.Bbox bbox = new GeoFence.Bbox(38.35, -90.9, 39.05, -89.95);
+    private final Bbox bbox = new Bbox(38.35, -90.9, 39.05, -89.95);
 
     @Test
     void acceptsAroundCenterInRegion() {

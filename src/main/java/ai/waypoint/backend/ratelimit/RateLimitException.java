@@ -1,4 +1,4 @@
-package ai.waypoint.backend.overpass;
+package ai.waypoint.backend.ratelimit;
 
 /** A client has exhausted its fixed-window request allowance. */
 public class RateLimitException extends RuntimeException {
